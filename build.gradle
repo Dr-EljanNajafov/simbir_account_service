@@ -37,6 +37,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
 	annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 
 	/**
@@ -45,6 +46,17 @@ dependencies {
 	implementation 'org.liquibase:liquibase-core'
 	implementation("redis.clients:jedis:4.3.2")
 	runtimeOnly 'org.postgresql:postgresql'
+
+	// JWT support for secure and stateless authentication
+	implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+	implementation 'io.jsonwebtoken:jjwt-impl:0.11.5'
+	implementation 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+
+	// Swagger Annotations for API documentation
+	implementation 'io.swagger:swagger-annotations:1.6.14'
+
+	// SpringDoc OpenAPI for generating API docs using Swagger UI
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0'
 
 	/**
 	 * Utils & Logging
