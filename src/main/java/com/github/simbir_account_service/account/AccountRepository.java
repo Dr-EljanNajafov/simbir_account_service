@@ -1,4 +1,4 @@
-package com.github.simbir_account_service.entity;
+package com.github.simbir_account_service.account;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;

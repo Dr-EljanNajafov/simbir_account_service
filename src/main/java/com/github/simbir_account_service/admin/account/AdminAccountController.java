@@ -1,7 +1,7 @@
 package com.github.simbir_account_service.admin.account;
 
 import com.github.simbir_account_service.admin.AdminService;
-import com.github.simbir_account_service.entity.*;
+import com.github.simbir_account_service.account.*;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.persistence.EntityNotFoundException;

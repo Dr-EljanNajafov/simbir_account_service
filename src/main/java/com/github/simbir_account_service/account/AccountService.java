@@ -1,8 +1,7 @@
-package com.github.simbir_account_service.entity;
+package com.github.simbir_account_service.account;
 
 import com.github.simbir_account_service.auth.jwt.JwtService;
 import com.github.simbir_account_service.blacklist.JwtBlacklistRepository;
-import io.jsonwebtoken.Claims;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;

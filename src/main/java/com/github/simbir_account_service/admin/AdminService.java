@@ -1,9 +1,9 @@
 package com.github.simbir_account_service.admin;
 
 import com.github.simbir_account_service.auth.jwt.JwtService;
-import com.github.simbir_account_service.entity.Account;
-import com.github.simbir_account_service.entity.AccountRepository;
-import com.github.simbir_account_service.entity.Role;
+import com.github.simbir_account_service.account.Account;
+import com.github.simbir_account_service.account.AccountRepository;
+import com.github.simbir_account_service.account.Role;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

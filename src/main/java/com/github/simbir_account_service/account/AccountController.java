@@ -1,4 +1,4 @@
-package com.github.simbir_account_service.entity;
+package com.github.simbir_account_service.account;
 
 import com.github.simbir_account_service.auth.jwt.JwtService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -9,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Map;
 import java.util.Optional;
 
 @RestController

@@ -2,7 +2,7 @@ package com.github.simbir_account_service.auth.jwt;
 
 import com.github.simbir_account_service.blacklist.JwtBlacklist;
 import com.github.simbir_account_service.blacklist.JwtBlacklistRepository;
-import com.github.simbir_account_service.entity.RefreshResponse;
+import com.github.simbir_account_service.account.RefreshResponse;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
