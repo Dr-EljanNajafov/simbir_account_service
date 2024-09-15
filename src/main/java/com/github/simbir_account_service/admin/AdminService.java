@@ -1,0 +1,48 @@
+package com.github.simbir_account_service.admin;
+
+import com.github.simbir_account_service.auth.jwt.JwtService;
+import com.github.simbir_account_service.entity.Account;
+import com.github.simbir_account_service.entity.AccountRepository;
+import com.github.simbir_account_service.entity.Role;
+import jakarta.servlet.http.HttpServletRequest;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
+
+import java.util.function.Consumer;
+import java.util.function.Function;
+
+@Service
+@RequiredArgsConstructor
+public class AdminService {
+    private final JwtService jwtService;
+    private final AccountRepository accountRepository;
+
+
+    // Версия без возврата результата (void)
+    public void checkAdminVoid(HttpServletRequest request, Consumer<String> adminConsumer) {
+        checkAdmin(request, username -> {
+            adminConsumer.accept(username);
+            return null;  // Так как это версия без возврата значения
+        });
+    }
+
+    // Версия с возвратом результата
+    public <T> T checkAdmin(HttpServletRequest request, Function<String, T> adminConsumer) {
+        // Используем accessUser для извлечения имени пользователя (username)
+        return jwtService.accessUser(request, username -> {
+            // Находим пользователя по username
+            Account user = accountRepository.findByUsername(username)
+                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
+
+            // Проверяем роль пользователя
+            if (user.getRole() != Role.admin) {
+                throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Only admins can access this endpoint");
+            }
+
+            // Если проверка прошла, применяем переданную функцию adminConsumer
+            return adminConsumer.apply(username);
+        });
+    }
+}
