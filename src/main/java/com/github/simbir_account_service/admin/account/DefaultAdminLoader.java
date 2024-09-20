@@ -1,6 +1,9 @@
 package com.github.simbir_account_service.admin.account;
 
 import com.github.simbir_account_service.account.*;
+import com.github.simbir_account_service.model.Account;
+import com.github.simbir_account_service.repository.AccountRepository;
+import com.github.simbir_account_service.service.AccountService;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;

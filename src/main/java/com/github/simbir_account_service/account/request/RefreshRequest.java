@@ -1,5 +1,4 @@
-package com.github.simbir_account_service.account;
-
+package com.github.simbir_account_service.account.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,6 +9,6 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AuthenticationResponse {
-    private String token;
+public class RefreshRequest {
+    private String refreshToken;
 }

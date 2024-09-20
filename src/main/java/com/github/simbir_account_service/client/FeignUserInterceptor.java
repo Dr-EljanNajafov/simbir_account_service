@@ -8,8 +8,14 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class FeignUserInterceptor implements RequestInterceptor {
     private final UserContext userContext;
+
     @Override
     public void apply(RequestTemplate template) {
-        template.header("x-user-id", String.valueOf(userContext.getUserId()));
+        // Извлечение токена из UserContext
+        String token = userContext.getToken();
+        if (token != null) {
+            // Добавление токена в заголовок Authorization
+            template.header("Authorization", "Bearer " + token);
+        }
     }
 }

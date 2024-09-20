@@ -1,5 +1,8 @@
-package com.github.simbir_account_service.doctor;
+package com.github.simbir_account_service.service;
 
+import com.github.simbir_account_service.repository.DoctorRepository;
+import com.github.simbir_account_service.doctor.request.GetDoctorRequest;
+import com.github.simbir_account_service.model.Doctor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;

@@ -1,5 +1,7 @@
-package com.github.simbir_account_service.doctor;
+package com.github.simbir_account_service.dto.mapper;
 
+import com.github.simbir_account_service.model.Doctor;
+import com.github.simbir_account_service.dto.DoctorDto;
 import org.springframework.stereotype.Service;
 
 import java.util.function.Function;

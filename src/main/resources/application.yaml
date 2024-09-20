@@ -31,3 +31,8 @@ thread-pool:
   maxPoolSize: 4
   corePoolSize: 4
   threadNamePrefix: "poolThread-"
+
+services:
+  hospital-service:
+    host: //localhost
+    port: 9080

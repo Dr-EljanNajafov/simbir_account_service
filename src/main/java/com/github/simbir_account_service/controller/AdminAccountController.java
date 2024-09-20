@@ -1,7 +1,13 @@
-package com.github.simbir_account_service.admin.account;
+package com.github.simbir_account_service.controller;
 
 import com.github.simbir_account_service.admin.AdminService;
-import com.github.simbir_account_service.account.*;
+import com.github.simbir_account_service.admin.account.request.GetAccountRequest;
+import com.github.simbir_account_service.admin.account.request.RegisterByAdminRequest;
+import com.github.simbir_account_service.admin.account.request.UpdateByAdminRequest;
+import com.github.simbir_account_service.dto.AccountDto;
+import com.github.simbir_account_service.model.Account;
+import com.github.simbir_account_service.repository.AccountRepository;
+import com.github.simbir_account_service.service.AdminAccountService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.persistence.EntityNotFoundException;

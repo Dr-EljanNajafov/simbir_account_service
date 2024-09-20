@@ -1,7 +1,15 @@
-package com.github.simbir_account_service.account;
+package com.github.simbir_account_service.service;
 
+import com.github.simbir_account_service.repository.AccountRepository;
+import com.github.simbir_account_service.account.Role;
+import com.github.simbir_account_service.account.request.AuthenticationRequest;
+import com.github.simbir_account_service.account.request.RegisterRequest;
+import com.github.simbir_account_service.account.request.UpdateRequest;
+import com.github.simbir_account_service.account.response.AuthenticationResponse;
 import com.github.simbir_account_service.auth.jwt.JwtService;
 import com.github.simbir_account_service.blacklist.JwtBlacklistRepository;
+import com.github.simbir_account_service.dto.AccountDto;
+import com.github.simbir_account_service.model.Account;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;

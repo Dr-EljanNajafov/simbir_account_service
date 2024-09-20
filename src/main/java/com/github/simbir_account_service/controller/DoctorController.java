@@ -1,8 +1,10 @@
-package com.github.simbir_account_service.doctor;
+package com.github.simbir_account_service.controller;
 
+import com.github.simbir_account_service.doctor.request.GetDoctorRequest;
+import com.github.simbir_account_service.model.Doctor;
+import com.github.simbir_account_service.service.DoctorService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

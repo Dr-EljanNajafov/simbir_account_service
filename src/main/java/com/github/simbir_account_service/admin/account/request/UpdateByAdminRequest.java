@@ -1,4 +1,4 @@
-package com.github.simbir_account_service.admin.account;
+package com.github.simbir_account_service.admin.account.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,15 +12,14 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class RegisterByAdminRequest {
+public class UpdateByAdminRequest {
+    @NonNull
+    private String lastName;
+    @NonNull
+    private String firstName;
     @NonNull
     private String username;
     @NonNull
     private String password;
-    @NonNull
-    private String firstName;
-    @NonNull
-    private String lastName;
     private List<String> roles;  // Список строк для ролей
 }
-

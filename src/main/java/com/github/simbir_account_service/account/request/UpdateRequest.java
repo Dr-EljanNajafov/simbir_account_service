@@ -1,4 +1,4 @@
-package com.github.simbir_account_service.account;
+package com.github.simbir_account_service.account.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,8 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class RegisterRequest {
-    private String username;
+public class UpdateRequest {
     private String lastName;
     private String firstName;
     private String password;

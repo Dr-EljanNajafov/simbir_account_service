@@ -1,4 +1,4 @@
-package com.github.simbir_account_service.doctor;
+package com.github.simbir_account_service.dto;
 
 public record DoctorDto(
         Long id,

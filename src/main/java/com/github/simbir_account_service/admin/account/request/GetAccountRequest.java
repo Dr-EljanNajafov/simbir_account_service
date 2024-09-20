@@ -1,4 +1,4 @@
-package com.github.simbir_account_service.doctor;
+package com.github.simbir_account_service.admin.account.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class GetDoctorRequest {
-    private String nameFilter; // Фильтр имени
+public class GetAccountRequest {
     private int from;
     private int count;
 }
+

@@ -1,5 +1,6 @@
-package com.github.simbir_account_service.account;
+package com.github.simbir_account_service.model;
 
+import com.github.simbir_account_service.account.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
