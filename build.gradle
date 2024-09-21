@@ -39,6 +39,9 @@ dependencies {
 	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
+	// https://mvnrepository.com/artifact/org.springframework.security/spring-security-core
+	implementation 'org.springframework.security:spring-security-core'
+
 
 	/**
 	 * Database
