@@ -3,6 +3,7 @@ package com.github.simbir_account_service.auth.jwt;
 import com.github.simbir_account_service.blacklist.JwtBlacklist;
 import com.github.simbir_account_service.blacklist.JwtBlacklistRepository;
 import com.github.simbir_account_service.account.response.RefreshResponse;
+import com.github.simbir_account_service.controller.AccountController;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -10,16 +11,18 @@ import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
-import java.util.Optional;
+import org.springframework.security.core.GrantedAuthority;
+
+import java.util.*;
 
 import java.security.Key;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.function.Function;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -28,6 +31,7 @@ public class JwtService {
 
     private static final String SECRET_KEY = "9311eceb51e8a2f2d7a5825e6178dcf27d102a8173eb003cf4a0de6bc8e29df0878798a4de52de55ab32c4dcdb123ed35a0bd43c3ac2e499e95a1a95222c3947";
     private final JwtBlacklistRepository jwtBlacklistRepository;
+    private static final Logger logger = LoggerFactory.getLogger(AccountController.class);
 
 
     public <T> T accessUser(HttpServletRequest request, Function<String, T> userConsumer) {
@@ -70,9 +74,18 @@ public class JwtService {
             Map<String, Object> extraClaims,
             UserDetails userDetails
     ) {
+        List<String> roles = userDetails.getAuthorities()
+                .stream()
+                .map(GrantedAuthority::getAuthority)
+                .toList();
+
+        // Объедините claims и роли
+        Map<String, Object> claims = new HashMap<>(extraClaims);
+        claims.put("roles", roles);
+
         return Jwts
                 .builder()
-                .setClaims(extraClaims)
+                .setClaims(claims)
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24))
@@ -87,13 +100,16 @@ public class JwtService {
     public boolean isTokenValid(String token, UserDetails userDetails) {
         Optional<JwtBlacklist> blacklistToken = jwtBlacklistRepository.findById(token);
         if (blacklistToken.isPresent()) {
+            logger.warn("Токен черного списка: {}", token);
             if (isTokenExpired(token)) {
                 jwtBlacklistRepository.delete(blacklistToken.get());
+                logger.warn("Токен недействителен: {}", token);
             }
             return false;
         }
         // Check if username matches and token is not expired
         final String username = extractUsername(token);
+        logger.error("Ошибка в процессе валидации токена");
         return (username.equals(userDetails.getUsername())) && !isTokenExpired(token);
     }
 

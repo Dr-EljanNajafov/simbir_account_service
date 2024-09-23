@@ -13,6 +13,8 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +27,7 @@ import java.util.Optional;
 public class AccountController {
     private final AccountService accountService;
     private final JwtService jwtService;
+    private static final Logger logger = LoggerFactory.getLogger(AccountController.class);
 
 
     @Operation(summary = "Получение данных о текущем аккаунте")
@@ -84,11 +87,15 @@ public class AccountController {
 
     @Operation(summary = "Интроспекция токена")
     @GetMapping("/Validate")
-    public ResponseEntity<?> validateToken(@RequestParam String accessToken) {
+    public ResponseEntity<String> validateToken(@RequestParam String accessToken) {
+        logger.info("Получен токен для валидации: {}", accessToken);
+
         boolean isValid = jwtService.isTokenValid(accessToken);
         if (isValid) {
+            logger.info("Токен валиден: {}", accessToken);
             return ResponseEntity.ok("Токен валиден");
         } else {
+            logger.warn("Токен недействителен: {}", accessToken);
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Токен недействителен");
         }
     }
