@@ -5,6 +5,7 @@ import com.github.simbir_account_service.admin.account.request.GetAccountRequest
 import com.github.simbir_account_service.admin.account.request.RegisterByAdminRequest;
 import com.github.simbir_account_service.admin.account.request.UpdateByAdminRequest;
 import com.github.simbir_account_service.dto.AccountDto;
+import com.github.simbir_account_service.dto.mapper.AccountDtoMapper;
 import com.github.simbir_account_service.model.Account;
 import com.github.simbir_account_service.repository.AccountRepository;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -23,6 +25,7 @@ public class AdminAccountService {
     private final AccountRepository accountRepository;
     private final PasswordEncoder passwordEncoder;
     private final AccountService accountService;
+    private final AccountDtoMapper accountDtoMapper;
 
     public List<AccountDto> users(GetAccountRequest request) {
         if (request.getFrom() < 0 || request.getCount() < 0) {
@@ -43,6 +46,12 @@ public class AdminAccountService {
                         account.getFirstName(),
                         account.getRole()))
                 .collect(Collectors.toList());
+    }
+
+    public AccountDto getUserById(Long id) {
+        Account user = accountRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Account not found"));
+        return accountDtoMapper.apply(user);
     }
 
     public AccountDto registerUser(RegisterByAdminRequest request) {

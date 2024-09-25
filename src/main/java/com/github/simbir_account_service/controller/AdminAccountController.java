@@ -36,6 +36,14 @@ public class AdminAccountController {
         return ResponseEntity.ok(accounts);
     }
 
+    @Operation(summary = "Получение аккаунта по id")
+    @SecurityRequirement(name = "Bearer Authentication")
+    @GetMapping("/{id}")
+    public ResponseEntity<AccountDto> getAccountById(@PathVariable long id, HttpServletRequest request) {
+        AccountDto account = adminService.checkAdminDoctorManager(request, userId -> adminAccountService.getUserById(id));
+        return ResponseEntity.ok(account);
+    }
+
     @Operation(summary = "Создание администратором нового пользователя")
     @SecurityRequirement(name = "Bearer Authentication")
     @PostMapping
