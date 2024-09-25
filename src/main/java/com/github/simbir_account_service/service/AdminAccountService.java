@@ -48,8 +48,17 @@ public class AdminAccountService {
     public AccountDto registerUser(RegisterByAdminRequest request) {
         accountService.checkUsername(request.getUsername());
 
-        Role role = (request.getRoles() != null && request.getRoles().contains("admin"))
-                ? Role.admin : Role.user;
+        Role role = Role.user; // Значение по умолчанию
+
+        if (request.getRoles() != null) {
+            if (request.getRoles().contains("admin")) {
+                role = Role.admin;
+            } else if (request.getRoles().contains("doctor")) {
+                role = Role.doctor;
+            } else if (request.getRoles().contains("manager")) {
+                role = Role.manager;
+            }
+        }
 
         Account user = Account.builder()
                 .role(role)
