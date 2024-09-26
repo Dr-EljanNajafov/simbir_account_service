@@ -7,19 +7,15 @@ import com.github.simbir_account_service.account.request.RegisterRequest;
 import com.github.simbir_account_service.account.request.UpdateRequest;
 import com.github.simbir_account_service.account.response.AuthenticationResponse;
 import com.github.simbir_account_service.auth.jwt.JwtService;
-import com.github.simbir_account_service.blacklist.JwtBlacklistRepository;
 import com.github.simbir_account_service.dto.AccountDto;
 import com.github.simbir_account_service.model.Account;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-
 import java.util.Optional;
 
 @Service
@@ -29,14 +25,9 @@ public class AccountService {
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
-    private final JwtBlacklistRepository jwtBlacklistRepository;
 
     // Retrieve user info by username
     public AccountDto accountInfo(String username) {
-
-        // Get the current authentication
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String token = (String) authentication.getCredentials();
 
         Account user = user(username);
         return new AccountDto(

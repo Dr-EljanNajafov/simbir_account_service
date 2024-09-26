@@ -1,10 +1,8 @@
 package com.github.simbir_account_service.repository;
 
-
 import com.github.simbir_account_service.model.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
 import java.util.Optional;
 
 @Repository

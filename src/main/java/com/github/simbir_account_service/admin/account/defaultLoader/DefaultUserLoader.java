@@ -5,11 +5,9 @@ import com.github.simbir_account_service.model.Account;
 import com.github.simbir_account_service.repository.AccountRepository;
 import jakarta.annotation.PostConstruct;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 
 @Service
 @RequiredArgsConstructor

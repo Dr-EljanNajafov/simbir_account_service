@@ -13,9 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -96,7 +94,7 @@ public class AdminAccountService {
         account.setFirstName(request.getFirstName());
         account.setLastName(request.getLastName());
 
-        if (request.getPassword() != null && !request.getPassword().isEmpty()) {
+        if (!request.getPassword().isEmpty()) {
             account.setPassword(passwordEncoder.encode(request.getPassword()));
         }
 
@@ -108,10 +106,5 @@ public class AdminAccountService {
         Account account = accountRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
         accountRepository.delete(account);
-    }
-
-    public Account getAccountById(Long id) {
-        return accountRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Account not found"));
     }
 }

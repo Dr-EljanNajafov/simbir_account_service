@@ -1,6 +1,5 @@
 package com.github.simbir_account_service.account.response;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

@@ -1,7 +1,6 @@
 package com.github.simbir_account_service.config.context;
 
 import org.springframework.stereotype.Component;
-
 @Component
 public class UserContext {
     private String token;

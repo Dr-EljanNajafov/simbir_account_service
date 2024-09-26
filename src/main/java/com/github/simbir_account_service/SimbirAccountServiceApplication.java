@@ -15,5 +15,4 @@ public class SimbirAccountServiceApplication {
 				.bannerMode(Banner.Mode.OFF)
 				.run(args);
 	}
-
 }
