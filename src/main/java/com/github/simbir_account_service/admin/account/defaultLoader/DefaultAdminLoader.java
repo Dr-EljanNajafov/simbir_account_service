@@ -1,4 +1,4 @@
-package com.github.simbir_account_service.admin.account;
+package com.github.simbir_account_service.admin.account.defaultLoader;
 
 import com.github.simbir_account_service.account.*;
 import com.github.simbir_account_service.model.Account;
