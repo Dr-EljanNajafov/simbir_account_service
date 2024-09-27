@@ -19,7 +19,6 @@ import org.springframework.security.core.GrantedAuthority;
 import java.util.*;
 import java.security.Key;
 import java.util.function.Function;
-import java.util.function.Consumer;
 
 @Service
 @RequiredArgsConstructor
@@ -29,17 +28,9 @@ public class JwtService {
     private final JwtBlacklistRepository jwtBlacklistRepository;
     private static final Logger logger = LoggerFactory.getLogger(AccountController.class);
 
-
     public <T> T accessUser(HttpServletRequest request, Function<String, T> userConsumer) {
         String username = extractClaim(token(request).orElseThrow(), Claims::getSubject);
         return userConsumer.apply(username);
-    }
-
-    public void accessUserVoid(HttpServletRequest request, Consumer<String> userConsumer) {
-        accessUser(request, username -> {
-            userConsumer.accept(username);  // Передаем строковое имя пользователя
-            return null;
-        });
     }
 
     public Optional<String> token(HttpServletRequest request) {

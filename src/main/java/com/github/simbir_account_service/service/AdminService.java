@@ -10,7 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import java.util.EnumSet;
-import java.util.function.Consumer;
 import java.util.function.Function;
 
 @Service
@@ -18,23 +17,6 @@ import java.util.function.Function;
 public class AdminService {
     private final JwtService jwtService;
     private final AccountRepository accountRepository;
-
-
-    // Версия без возврата результата (void)
-    public void checkAdminVoid(HttpServletRequest request, Consumer<String> adminConsumer) {
-        checkAdmin(request, username -> {
-            adminConsumer.accept(username);
-            return null;  // Так как это версия без возврата значения
-        });
-    }
-
-    // Версия без возврата результата (void)
-    public void checkAdminDoctorManagerVoid(HttpServletRequest request, Consumer<String> adminConsumer) {
-        checkAdminDoctorManager(request, username -> {
-            adminConsumer.accept(username);
-            return null;  // Так как это версия без возврата значения
-        });
-    }
 
     // Версия с возвратом результата
     public <T> T checkAdmin(HttpServletRequest request, Function<String, T> adminConsumer) {
