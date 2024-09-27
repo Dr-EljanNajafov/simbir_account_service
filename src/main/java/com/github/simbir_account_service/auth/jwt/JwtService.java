@@ -1,8 +1,8 @@
 package com.github.simbir_account_service.auth.jwt;
 
-import com.github.simbir_account_service.blacklist.JwtBlacklist;
-import com.github.simbir_account_service.blacklist.JwtBlacklistRepository;
-import com.github.simbir_account_service.account.response.RefreshResponse;
+import com.github.simbir_account_service.entity.blacklist.JwtBlacklist;
+import com.github.simbir_account_service.repository.JwtBlacklistRepository;
+import com.github.simbir_account_service.entity.account.response.RefreshResponse;
 import com.github.simbir_account_service.controller.AccountController;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

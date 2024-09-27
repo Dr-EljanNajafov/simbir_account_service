@@ -1,6 +1,6 @@
 package com.github.simbir_account_service.client;
 
-import com.github.simbir_account_service.config.context.UserContext;
+import com.github.simbir_account_service.client.context.UserContext;
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
 import lombok.RequiredArgsConstructor;

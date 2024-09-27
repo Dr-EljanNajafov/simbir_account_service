@@ -1,7 +1,7 @@
 package com.github.simbir_account_service.controller;
 
-import com.github.simbir_account_service.doctor.request.GetDoctorRequest;
-import com.github.simbir_account_service.model.Doctor;
+import com.github.simbir_account_service.entity.doctor.request.GetDoctorRequest;
+import com.github.simbir_account_service.entity.doctor.Doctor;
 import com.github.simbir_account_service.service.DoctorService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;

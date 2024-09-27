@@ -1,11 +1,11 @@
 package com.github.simbir_account_service.controller;
 
-import com.github.simbir_account_service.account.request.AuthenticationRequest;
-import com.github.simbir_account_service.account.request.RefreshRequest;
-import com.github.simbir_account_service.account.request.RegisterRequest;
-import com.github.simbir_account_service.account.request.UpdateRequest;
-import com.github.simbir_account_service.account.response.AuthenticationResponse;
-import com.github.simbir_account_service.account.response.RefreshResponse;
+import com.github.simbir_account_service.entity.account.request.AuthenticationRequest;
+import com.github.simbir_account_service.entity.account.request.RefreshRequest;
+import com.github.simbir_account_service.entity.account.request.RegisterRequest;
+import com.github.simbir_account_service.entity.account.request.UpdateRequest;
+import com.github.simbir_account_service.entity.account.response.AuthenticationResponse;
+import com.github.simbir_account_service.entity.account.response.RefreshResponse;
 import com.github.simbir_account_service.auth.jwt.JwtService;
 import com.github.simbir_account_service.dto.AccountDto;
 import com.github.simbir_account_service.service.AccountService;

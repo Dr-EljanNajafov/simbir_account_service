@@ -1,6 +1,6 @@
 package com.github.simbir_account_service.dto.mapper;
 
-import com.github.simbir_account_service.model.Account;
+import com.github.simbir_account_service.entity.account.Account;
 import com.github.simbir_account_service.dto.AccountDto;
 import org.springframework.stereotype.Service;
 import java.util.function.Function;

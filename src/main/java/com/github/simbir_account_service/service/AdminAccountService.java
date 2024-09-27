@@ -1,12 +1,12 @@
 package com.github.simbir_account_service.service;
 
-import com.github.simbir_account_service.account.*;
-import com.github.simbir_account_service.admin.account.request.GetAccountRequest;
-import com.github.simbir_account_service.admin.account.request.RegisterByAdminRequest;
-import com.github.simbir_account_service.admin.account.request.UpdateByAdminRequest;
+import com.github.simbir_account_service.entity.account.request.GetAccountRequest;
+import com.github.simbir_account_service.entity.account.request.RegisterByAdminRequest;
+import com.github.simbir_account_service.entity.account.request.UpdateByAdminRequest;
 import com.github.simbir_account_service.dto.AccountDto;
 import com.github.simbir_account_service.dto.mapper.AccountDtoMapper;
-import com.github.simbir_account_service.model.Account;
+import com.github.simbir_account_service.entity.account.Account;
+import com.github.simbir_account_service.entity.account.Role;
 import com.github.simbir_account_service.repository.AccountRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
