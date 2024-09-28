@@ -33,7 +33,7 @@ public class AccountController {
     @SecurityRequirement(name = "Bearer Authentication")
     @GetMapping("/Me")
     public AccountDto me(HttpServletRequest request) {
-        return jwtService.accessUser(request, accountService::accountInfo);
+        return jwtService.accessUser(request, accountService::getAccountInfo);
     }
 
     @Operation(summary = "Получение новой пары jwt пользователя")

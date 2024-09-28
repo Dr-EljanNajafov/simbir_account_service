@@ -27,11 +27,11 @@ public class AdminAccountController {
     private final AccountRepository repository;
 
 
-    @Operation(summary = "Получение списка всех аккаунтов (только для администраторов)")
+    @Operation(summary = "Получение списка всех аккаунтов")
     @SecurityRequirement(name = "Bearer Authentication")
     @GetMapping
     public ResponseEntity<List<AccountDto>> getAllAccounts(GetAccountRequest getAccountRequest, HttpServletRequest request) {
-        List<AccountDto> accounts = adminService.checkAdmin(request, userId -> adminAccountService.users(getAccountRequest));
+        List<AccountDto> accounts = adminService.checkAdmin(request, userId -> adminAccountService.getUsers(getAccountRequest));
         return ResponseEntity.ok(accounts);
     }
 

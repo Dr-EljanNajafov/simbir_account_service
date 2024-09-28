@@ -25,7 +25,7 @@ public class AdminAccountService {
     private final AccountService accountService;
     private final AccountDtoMapper accountDtoMapper;
 
-    public List<AccountDto> users(GetAccountRequest request) {
+    public List<AccountDto> getUsers(GetAccountRequest request) {
         if (request.getFrom() < 0 || request.getCount() < 0) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "'from' and 'count' must be >= 0");
         }
@@ -76,7 +76,7 @@ public class AdminAccountService {
                 .build();
 
         accountRepository.save(user);
-        return accountService.accountInfo(user.getUsername());
+        return accountService.getAccountInfo(user.getUsername());
     }
 
     public AccountDto updateAccount(String username, UpdateByAdminRequest request) {
@@ -99,7 +99,7 @@ public class AdminAccountService {
         }
 
         accountRepository.save(account);
-        return accountService.accountInfo(account.getUsername());
+        return accountService.getAccountInfo(account.getUsername());
     }
 
     public void deleteAccount(Long id) {

@@ -27,9 +27,9 @@ public class AccountService {
     private final AuthenticationManager authenticationManager;
 
     // Retrieve user info by username
-    public AccountDto accountInfo(String username) {
+    public AccountDto getAccountInfo(String username) {
 
-        Account user = user(username);
+        Account user = getUser(username);
         return new AccountDto(
                 user.getId(),
                 user.getUsername(),
@@ -77,7 +77,7 @@ public class AccountService {
     // Update user information
     public AuthenticationResponse update(String username, UpdateRequest request) {
         // Получаем текущего пользователя
-        Account user = user(username);
+        Account user = getUser(username);
 
         // Флаг для проверки, был ли обновлен пароль
         boolean isPasswordUpdated = false;
@@ -102,7 +102,7 @@ public class AccountService {
     }
 
     // Retrieve user by username
-    public Account user(String username) {
+    public Account getUser(String username) {
         Account user = accountRepository.findByUsername(username)
                 .orElseThrow(() -> new ResponseStatusException(
                         HttpStatus.NOT_FOUND,
