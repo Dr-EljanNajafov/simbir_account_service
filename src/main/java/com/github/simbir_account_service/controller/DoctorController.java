@@ -1,13 +1,14 @@
 package com.github.simbir_account_service.controller;
 
+import com.github.simbir_account_service.dto.DoctorDto;
 import com.github.simbir_account_service.entity.doctor.request.GetDoctorRequest;
-import com.github.simbir_account_service.entity.doctor.Doctor;
 import com.github.simbir_account_service.service.DoctorService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -20,7 +21,7 @@ public class DoctorController {
     @Operation(summary = "Получение списка докторов")
     @SecurityRequirement(name = "Bearer Authentication")
     @GetMapping
-    public ResponseEntity<List<Doctor>> getDoctors(
+    public ResponseEntity<List<DoctorDto>> getDoctors(
             @RequestParam(required = false, defaultValue = "") String nameFilter,
             @RequestParam int from,
             @RequestParam int count
@@ -31,16 +32,16 @@ public class DoctorController {
                 .count(count)
                 .build();
 
-        List<Doctor> doctors = doctorService.getDoctors(getDoctorRequest);
+        List<DoctorDto> doctors = doctorService.getDoctors(getDoctorRequest);
         return ResponseEntity.ok(doctors);
     }
 
     @Operation(summary = "Получение информации о докторе по Id")
     @SecurityRequirement(name = "Bearer Authentication")
     @GetMapping("/{id}")
-    public ResponseEntity<Doctor> getDoctorById(
+    public ResponseEntity<DoctorDto> getDoctorById(
             @PathVariable Long id) {
-        Doctor doctor = doctorService.getDoctorById(id);
+        DoctorDto doctor = doctorService.getDoctorById(id);
         return ResponseEntity.ok(doctor);
     }
 }
