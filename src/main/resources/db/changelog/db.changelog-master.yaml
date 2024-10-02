@@ -3,5 +3,3 @@ databaseChangeLog:
       file: db/changelog/changeset/V001__simbir-account-service_account.sql
   - include:
       file: db/changelog/changeset/V002__simbir-account-service_jwt_blacklist.sql
-  - include:
-      file: db/changelog/changeset/V003__simbir-account-service_doctor.sql
